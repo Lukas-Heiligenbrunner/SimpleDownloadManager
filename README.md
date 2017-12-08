@@ -1,2 +1,2 @@
 # SimpleDownloadManager
-A simple download manager based on Java --  optimised for Raspberry pi
+A simple download manager based on Java  --  optimized for Raspberry pi
