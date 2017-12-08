@@ -22,7 +22,7 @@ public class DownloadManager {
 	    {
 		System.out.println("[Server] Starting download...");
 		downloadclass = new Download();
-		downloadclass.toDownload(daten[i].link);
+		downloadclass.toDownload(daten[i]);
 		System.out.println("[Server] Download started...");
 		System.out.println("Filename:" + downloadclass.getFileName());
 		System.out.println("Type:" + downloadclass.getType());

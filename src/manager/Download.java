@@ -49,26 +49,15 @@ public class Download {
 	downloadComplete = false;
     }
     
-    public boolean toDownload(String url)
+    public boolean toDownload(mydata mdata)
     {
 	try
 	{
 	    
-	    website = new URL(url);
-	    URLConnection urlcon = website.openConnection();
-	    
-	    String fieldValue = urlcon.getHeaderField("Content-Disposition");
-	    if (fieldValue == null || !fieldValue.contains("filename=\""))
-	    {
-		fieldValue = "unnamed";
-	    } else
-	    {
-		fieldValue = fieldValue.substring(fieldValue.indexOf("filename=") + 10, fieldValue.length() - 1);
-	    }
-	    
-	    totalfilesize = urlcon.getContentLength();
-	    contentType = urlcon.getContentType();
-	    fileName = fieldValue;
+	    website = new URL(mdata.link);
+	    totalfilesize= (int) mdata.filesize;
+	    contentType = mdata.contenttype;
+	    fileName=mdata.filename;
 	    
 	    downloadComplete = false;
 	    isInterrupted = false;
@@ -165,7 +154,6 @@ public class Download {
 			    Thread.sleep(500);
 			} catch (InterruptedException e1)
 			{
-			    // TODO Auto-generated catch block
 			    e1.printStackTrace();
 			}
 		    }
