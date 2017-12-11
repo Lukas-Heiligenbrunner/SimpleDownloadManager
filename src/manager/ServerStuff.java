@@ -213,10 +213,22 @@ public class ServerStuff extends DownloadManager {
 	} else if (command.equals("resume"))
 	{
 	    downloadclass.resumedownload();
-	} else
+	} else if (command.contains("add"))
 	{
-	    safeLink(command);
-	    System.out.println("[Server] new Downloadlink added!");
+		String temp=command.substring(4);
+		
+		safeLink(temp);
+		System.out.println("[Server] new Downloadlink added!");
+	} else if(command.contains("bandwidth "))
+	{
+		int temp=Integer.valueOf(command.substring(10));
+		
+		downloadclass.setBandwidth(temp);
+		System.out.println("[Server] Bandwidth set to: "+downloadclass.getBandwidth() +" kbit/S");
+	}
+	else
+	{
+	    System.out.println("[Server] [WARNING] Wrong command!");
 	}
     }
     

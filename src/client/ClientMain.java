@@ -255,14 +255,14 @@ public class ClientMain {
 		{
 		    System.err.println("[Client] [ERROR] no route to host!");
 		}
-	    } else
+	    } else if(args[0].equals("--add"))
 	    {
 		try
 		{
 		    socket.connect(address);
 		    PrintWriter prwr = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
 		    
-		    prwr.println(args[0]);
+		    prwr.println(args[0].substring(2)+" "+args[1]);
 		    prwr.flush();
 		    
 		    System.out.println("[Client] added new link to Downloads");
@@ -273,6 +273,28 @@ public class ClientMain {
 		{
 		    System.err.println("[Client] [ERROR] no route to host!");
 		}
+	    } else if(args[0].equals("--limitbandwidth"))
+	    {
+	    	try
+			{
+			    socket.connect(address);
+			    PrintWriter prwr = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+			    
+			    prwr.println("bandwidth "+args[1]);
+			    prwr.flush();
+			    
+			    System.out.println("[Client] set download bandwidth to: " + args[1] +"kbit/s" );
+			    
+			    prwr.close();
+			    socket.close();
+			} catch (IOException e)
+			{
+			    System.err.println("[Client] [ERROR] no route to host!");
+			}
+	    }
+	    else
+	    {
+	    	System.out.println("[Client] [WARNING] Wrong command!");
 	    }
 	} catch (ArrayIndexOutOfBoundsException e)
 	{
