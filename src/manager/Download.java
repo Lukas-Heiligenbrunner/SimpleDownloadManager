@@ -9,9 +9,9 @@ import java.net.URL;
 
 public class Download {
 
-	private static final String path = "/media/10.0.0.4/Download/got/"; // todo forme!
+	//private static final String path = "/media/10.0.0.4/Download/got/"; // todo forme!
 
-	// private static final String path = "";
+	 private static final String path = "";
 
 	private URL website;
 	private float speed;
@@ -29,6 +29,9 @@ public class Download {
 
 	long timeafter;
 	long megabyteafter;
+	
+	float[] speedshift = new float[10];
+	
 	float speedfirst;
 	float speedsecond;
 	float speedthird;
@@ -69,8 +72,6 @@ public class Download {
 			speedsixth = 0;
 			speedseventh = 0;
 			speedeight = 0;
-
-			// fos = new FileOutputStream("/media/10.0.0.4/Download/got/"+fileName);
 
 			InputStream in = website.openStream();
 
@@ -132,7 +133,6 @@ public class Download {
 					} catch (IOException e) {
 						e.printStackTrace();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
@@ -185,17 +185,18 @@ public class Download {
 
 		timebefore = System.currentTimeMillis();
 		megabytebefore = loadedSize;
-
-		speedeight = speedseventh;
-		speedseventh = speedsixth;
-		speedsixth = speedfifth;
-		speedfifth = speedfourth;
-		speedfourth = speedthird;
-		speedthird = speedsecond;
-		speedsecond = speedfirst;
-		speedfirst = (float) (megabyteafter - megabytebefore) / (float) (timeafter - timebefore);
-		speed = (speedfirst + speedsecond + speedthird + speedfourth + speedfifth + speedsixth + speedseventh
-				+ speedeight) / 8;
+		
+		for(int i=speedshift.length-1;i>0;i--)
+		{
+			speedshift[i]=speedshift[i-1];
+		}
+		speedshift[0]=(float) (megabyteafter - megabytebefore) / (float) (timeafter - timebefore);
+		
+		for(int i=speedshift.length-1;i>=0;i--)
+		{
+			speed+=speedshift[i];
+		}
+		speed/=speedshift.length;
 
 		timeafter = System.currentTimeMillis();
 		megabyteafter = loadedSize;

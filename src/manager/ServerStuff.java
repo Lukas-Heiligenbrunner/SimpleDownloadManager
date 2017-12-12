@@ -141,7 +141,6 @@ public class ServerStuff extends DownloadManager {
 		prwr.close();
 	    } catch (IOException e)
 	    {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	    } catch (NullPointerException e)
 	    {
@@ -261,11 +260,9 @@ public class ServerStuff extends DownloadManager {
 	    data[i].filename = fieldValue;
 	} catch (MalformedURLException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	} catch (IOException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	
@@ -284,11 +281,9 @@ public class ServerStuff extends DownloadManager {
 	    
 	} catch (FileNotFoundException e2)
 	{
-	    // TODO Auto-generated catch block
 	    e2.printStackTrace();
 	} catch (IOException e2)
 	{
-	    // TODO Auto-generated catch block
 	    e2.printStackTrace();
 	}
     }
@@ -318,7 +313,6 @@ public class ServerStuff extends DownloadManager {
 	    e.printStackTrace();
 	} catch (ClassNotFoundException e)
 	{
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	
