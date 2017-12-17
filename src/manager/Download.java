@@ -32,15 +32,6 @@ public class Download {
 	
 	float[] speedshift = new float[10];
 	
-	float speedfirst;
-	float speedsecond;
-	float speedthird;
-	float speedfourth;
-	float speedfifth;
-	float speedsixth;
-	float speedseventh;
-	float speedeight;
-
 	boolean isInterrupted;
 	boolean pause;
 	boolean isErrored;
@@ -66,14 +57,6 @@ public class Download {
 			speed = 0;
 
 			megabyteafter = 0;
-			speedfirst = 0;
-			speedsecond = 0;
-			speedthird = 0;
-			speedfourth = 0;
-			speedfifth = 0;
-			speedsixth = 0;
-			speedseventh = 0;
-			speedeight = 0;
 
 			InputStream in = website.openStream();
 
