@@ -32,7 +32,7 @@ public class DownloadManager {
 		daten[i].filesize = downloadclass.getTotalSize();
 		daten[i].downloadstate = false;
 		
-		while (!downloadclass.isDownloadcomplete() && !downloadclass.isInterrupted)
+		while (!downloadclass.isDownloadcomplete() && !downloadclass.isInterrupted && !downloadclass.isErrored)
 		{
 			if (downloadclass.getFileName().length() >= 22)
 			{
@@ -70,9 +70,16 @@ public class DownloadManager {
 		    return;
 		}
 		
-		daten[i].downloadstate = downloadclass.isDownloadcomplete();
+		if(downloadclass.isErrored)
+		{
+			System.out.println("[Server] [WARNING] Download ERROR!");
+		} 
+		else
+		{
+			System.out.println("[Server] Download Complete!");
+		}
 		
-		System.out.println("[Server] Download Complete!");
+		daten[i].downloadstate = downloadclass.isDownloadcomplete();
 		
 	    }
 	    else

@@ -9,9 +9,9 @@ import java.net.URL;
 
 public class Download {
 
-	//private static final String path = "/media/10.0.0.4/Download/got/"; // todo forme!
+	public static final String path = "/media/10.0.0.4/Download/got/"; // todo forme!
 
-	 private static final String path = "";
+	// private static final String path = "";
 
 	private URL website;
 	private float speed;
@@ -43,12 +43,14 @@ public class Download {
 
 	boolean isInterrupted;
 	boolean pause;
+	boolean isErrored;
 
 	public Download() {
 		timeafter = System.currentTimeMillis();
 
 		loadedSize = 0;
 		downloadComplete = false;
+		isErrored = false;
 		bandwidth = -1; // standard --> infinite
 	}
 
@@ -165,13 +167,13 @@ public class Download {
 
 		} catch (MalformedURLException e) {
 			System.err.println("MalformedURLException");
-			System.out.println("[Server][ERROR]Invalid download link!");
-			downloadComplete = true;
+			System.out.println("[Server][ERROR] Invalid download link!");
+			isErrored = true;
 			return false;
 		} catch (IOException e) {
-			System.err.println("IOException");
-			System.out.println("Reconnecting!");
-			e.printStackTrace();
+			System.err.println("[Server][ERROR] IOException - maybe invalid downloadlink?");
+			//e.printStackTrace();
+			isErrored=true;
 			return false;
 		}
 		return true;
@@ -264,5 +266,9 @@ public class Download {
 	public int getBandwidth()
 	{
 		return bandwidth;
+	}
+	public boolean isErrored()
+	{
+		return isErrored;
 	}
 }

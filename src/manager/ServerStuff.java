@@ -17,6 +17,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 @SuppressWarnings("serial")
@@ -31,6 +33,12 @@ class mydata implements Serializable {
 
 public class ServerStuff extends DownloadManager {
     
+	private static final int maxdownloads = 20;
+	public static final int port = 3000;
+	public static final String serverVersion = "0.1.2 - BETA";
+	public static final String startTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
+	
+	
     int storedvalue;
     
     Socket clientSocket;
@@ -40,11 +48,7 @@ public class ServerStuff extends DownloadManager {
     
     boolean stayalive;
     
-    static final int maxdownloads = 20;
-    
     mydata[] data;
-    
-    public static final int port = 3000;
     
     public ServerStuff()
     {
@@ -55,6 +59,7 @@ public class ServerStuff extends DownloadManager {
     
     public void startTCPServer()
     {
+    System.out.println("[Server] starting Server!");
 	TCPServer = new Thread(new Runnable()
 	{
 	    @Override
@@ -91,6 +96,9 @@ public class ServerStuff extends DownloadManager {
 	TCPServer.start();
 	
 	System.out.println("[Server] TCP Server Started!");
+	System.out.println("[Server] version: "+ serverVersion);
+	System.out.println("[Server] Start time: "+startTime);
+	System.out.println("[Server] download path: "+Download.path);
 	
     }
     
