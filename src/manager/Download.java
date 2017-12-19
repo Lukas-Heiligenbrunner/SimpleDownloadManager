@@ -27,14 +27,14 @@ public class Download {
 
 	private Thread download;
 
-	long timeafter;
-	long megabyteafter;
+	private long timeafter;
+	private long megabyteafter;
 	
-	float[] speedshift = new float[10];
+	private float[] speedshift = new float[10];
 	
-	boolean isInterrupted;
-	boolean pause;
-	boolean isErrored;
+	private boolean isInterrupted;
+	private boolean pause;
+	private boolean isErrored;
 
 	public Download() {
 		timeafter = System.currentTimeMillis();
