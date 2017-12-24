@@ -46,14 +46,14 @@ public class ClientMain {
 		    System.err.println("[Client] [ERROR] no route to host!");
 		}
 		
-	    } else if (args[0].equals("--status"))
+	    } else if (args[0].equals("--infoonce"))
 	    {
 		try
 		{
 		    socket.connect(address);
 		    PrintWriter prwr = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
 		    
-		    prwr.println("getstatus");
+		    prwr.println("getinfo");
 		    prwr.flush();
 		    
 		    Scanner s = new Scanner(new BufferedReader(new InputStreamReader(socket.getInputStream())));
@@ -105,7 +105,7 @@ public class ClientMain {
 		{
 		    System.err.println("[Client] [ERROR] no route to host!");
 		}
-	    } else if (args[0].equals("--statusloop"))
+	    } else if (args[0].equals("--info"))
 	    {
 		while (true)
 		{
@@ -115,7 +115,7 @@ public class ClientMain {
 			socket.connect(address);
 			PrintWriter prwr = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
 			
-			prwr.println("getstatus");
+			prwr.println("getinfo");
 			prwr.flush();
 			
 			Scanner s = new Scanner(new BufferedReader(new InputStreamReader(socket.getInputStream())));
@@ -290,6 +290,30 @@ public class ClientMain {
 			    
 			    prwr.close();
 			    socket.close();
+			} catch (IOException e)
+			{
+			    System.err.println("[Client] [ERROR] no route to host!");
+			}
+	    }else if(args[0].equals("--status"))
+	    {
+	    	try
+			{
+			    socket.connect(address);
+			    PrintWriter prwr = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+			    
+			    prwr.println("getstatus");
+			    prwr.flush();
+			    
+			    Scanner s = new Scanner(new BufferedReader(new InputStreamReader(socket.getInputStream())));
+			    while (s.hasNextLine())
+			    {
+				System.out.println(s.nextLine());
+			    }
+			    
+			    s.close();
+			    prwr.close();
+			    socket.close();
+			    
 			} catch (IOException e)
 			{
 			    System.err.println("[Client] [ERROR] no route to host!");

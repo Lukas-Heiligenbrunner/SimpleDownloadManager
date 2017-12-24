@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class PropertyFunctions {
     
-    public void safeProperties(Properties p)
+    protected void safeProperties(Properties p)
     {
 	File file = new File("properties.txt");
 	try
@@ -28,7 +28,7 @@ public class PropertyFunctions {
 	}
     }
     
-    public Properties readProperties()
+    protected Properties readProperties()
     {
 	File file = new File("properties.txt");
 	Properties props = new Properties();
@@ -42,6 +42,7 @@ public class PropertyFunctions {
 	} catch (FileNotFoundException e2)
 	{
 	    System.out.println("[Client] [Warning] Config file for clinet not found");
+	    //set defaults!
 	    props.setProperty("ipserver", "127.0.0.1");
 	    props.setProperty("port", "3000");
 	    safeProperties(props);

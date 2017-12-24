@@ -119,7 +119,7 @@ public class ServerStuff extends DownloadManager {
 	    });
 	    downloadThread.start();
 	    
-	} else if (command.equals("getstatus"))
+	} else if (command.equals("getinfo"))
 	{
 	    try
 	    {
@@ -167,7 +167,7 @@ public class ServerStuff extends DownloadManager {
 		data[i] = new mydata();
 	    }
 	    
-	    safeProperties(data);
+	    safeData(data);
 	    storedvalue = 0;
 	    System.out.println("[Server] Linklist cleared!");
 	} else if (command.equals("listlinks"))
@@ -193,7 +193,7 @@ public class ServerStuff extends DownloadManager {
 	    removeOnArrayPosition(data, Integer.valueOf(command.substring(command.indexOf(" ") + 1)));
 	    
 	    System.out.println("Removed on: " + command.substring(command.indexOf(" ") + 1));
-	    safeProperties(data);
+	    safeData(data);
 	} else if (command.contains("mov"))
 	{
 	    String temp = command.substring(command.indexOf(" ") + 1);
@@ -209,7 +209,7 @@ public class ServerStuff extends DownloadManager {
 	    data[destination] = data[origin];
 	    data[origin] = tempdata;
 	    
-	    safeProperties(data);
+	    safeData(data);
 	} else if (command.equals("stopserver"))
 	{
 	    System.out.println("[Server] Stopping Server!");
@@ -232,6 +232,22 @@ public class ServerStuff extends DownloadManager {
 		
 		downloadclass.setBandwidth(temp);
 		System.out.println("[Server] Bandwidth set to: "+downloadclass.getBandwidth() +" kbit/S");
+	} else if(command.equals("getstatus"))
+	{
+		try
+	    {
+		PrintWriter prwr = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+	
+		prwr.println("Server up and running!");
+		prwr.println("Uptime: "+ startTime);
+		prwr.println("Server version: "+serverVersion);
+		
+		prwr.flush();
+		prwr.close();
+	    } catch (IOException e)
+	    {
+		e.printStackTrace();
+	    }
 	}
 	else
 	{
@@ -274,10 +290,10 @@ public class ServerStuff extends DownloadManager {
 	    e.printStackTrace();
 	}
 	
-	safeProperties(data);
+	safeData(data);
     }
     
-    private void safeProperties(mydata[] data)
+    private void safeData(mydata[] data)
     {
 	File file = new File("data.obj");
 	
@@ -315,7 +331,7 @@ public class ServerStuff extends DownloadManager {
 		data[i] = new mydata();
 	    }
 	    
-	    safeProperties(data);
+	    safeData(data);
 	} catch (IOException e)
 	{
 	    e.printStackTrace();
