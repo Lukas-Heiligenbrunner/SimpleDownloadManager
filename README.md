@@ -11,7 +11,7 @@ built up as server and client
 
 ## how to start client?
 
-* java -jar client.jar --parameter
+java -jar client.jar --parameter
 
 	--help (showing the help dialog)
 	--start (start downloading)
