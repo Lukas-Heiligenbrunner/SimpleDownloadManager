@@ -16,8 +16,8 @@ java -jar client.jar --parameter
 	--help (showing the help dialog)
 	--start (start downloading)
 	--stop (stop downloading)
-	--status (show the status of the current download)
-	--statusloop (same as before but in a infinite loop)
+	--infoonce (show the status of the current download)
+	--info (same as before but in a infinite loop)
 	--deletelinks (deletes all links from list)
 	--add 'example.com/video.mp4' (add a link to the list
 	--stopserver (Stops the whole server!)
@@ -28,3 +28,4 @@ java -jar client.jar --parameter
 	--pausedownload (pauses the current downloading)
 	--resumedownload (resumes the current downloading)
 	--limitbandwidth <number in kbit/s> ()limits the download bandwidth
+	--status (print server info)

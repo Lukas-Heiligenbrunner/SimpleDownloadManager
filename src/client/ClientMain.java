@@ -141,8 +141,8 @@ public class ClientMain {
 		System.out.println("--help (showing this help dialog)");
 		System.out.println("--start (start downloading)");
 		System.out.println("--stop (stop downloading)");
-		System.out.println("--status (show the status of the current download)");
-		System.out.println("--statusloop (same as before but in a infinite loop)");
+		System.out.println("--infoonce (show the status of the current download)");
+		System.out.println("--info (same as before but in a infinite loop)");
 		System.out.println("--deletelinks (deletes all links from list)");
 		System.out.println("--add 'example.com/video.mp4' (add a link to the list");
 		System.out.println("--stopserver (Stops the whole server!)");
@@ -154,6 +154,7 @@ public class ClientMain {
 		System.out.println("--pausedownload (pauses the current downloading)");
 		System.out.println("--resumedownload (resumes the current downloading)");
 		System.out.println("--limitbandwidth <number in kbit/s> ()limits the download bandwidth");
+		System.out.println("--info (print server status)");
 	    } else if (args[0].equals("--listlinks"))
 	    {
 		try
@@ -328,18 +329,20 @@ public class ClientMain {
 		System.out.println("--help (showing this help dialog)");
 		System.out.println("--start (start downloading)");
 		System.out.println("--stop (stop downloading)");
-		System.out.println("--status (show the status of the current download)");
-		System.out.println("--statusloop (same as before but in a infinite loop)");
+		System.out.println("--infoonce (show the status of the current download)");
+		System.out.println("--info (same as before but in a infinite loop)");
 		System.out.println("--deletelinks (deletes all links from list)");
 		System.out.println("--add 'example.com/video.mp4' (add a link to the list");
 		System.out.println("--stopserver (Stops the whole server!)");
 		System.out.println("--delete <destination> (deletes the given position)");
-		System.out.println("--movlink <destination> <origin> (Moves a link from the origin to the destination)");
+		System.out
+			.println("--movlink <destination> <origin> (Moves a link from the origin to the destination)");
 		System.out.println("--listlinks (returns the list of stored links)");
 		System.out.println("--movlink <destination> <source>(move link from source to destination)");
 		System.out.println("--pausedownload (pauses the current downloading)");
 		System.out.println("--resumedownload (resumes the current downloading)");
 		System.out.println("--limitbandwidth <number in kbit/s> ()limits the download bandwidth");
+		System.out.println("--info (print server status)");
 	}
 	
     }
